@@ -1,15 +1,12 @@
 // 1.There is a random number dispayed at the begginging of the game
 var randomNumber = Math.floor(Math.random()* 120) + 19;
-var crystalOne = Math.floor(Math.random()* 12) + 1;
-var crystalTwo = Math.floor(Math.random()* 12) + 1;
-var crystalThree = Math.floor(Math.random()* 12) + 1;
-var crystalFour = Math.floor(Math.random()* 12) + 1;
-
 var totalScore = 0;
 var wins = 0;
 var losses = 0;
-var crystalTotal = [crystalOne, crystalTwo, crystalThree, crystalFour];
-var getTotal =[];
+var crystalValue =  Math.floor(Math.random()* 12) + 1;
+totalScore += crystalValue;
+
+//var getTotal =[];
 //     The random number shown at the start of the game should be between 19 - 120.
     //create a variable that chooses a random number from between 19-120.
 
@@ -18,44 +15,56 @@ var getTotal =[];
 //           Each crystal should have a random hidden value between 1 - 12.
 //           Your game will hide this amount until the player clicks a crystal.
           //create a variable for each crystal that will chosse a random number between 1 and 12.
-function gameStart(){
-    $("#random-number").text(function(event){
-        randomNumber = Math.floor(Math.random()* 120) + 19;
-        $("#random-number").prepend("Random Number: " + randomNumber);
-        
-    })
     
-     $("#crystal-one").on("click", function(){
-            crystalOne = Math.floor(Math.random()* 12) + 1;
-             console.log(crystalOne);
-       });
-      
-        $("#crystal-two").on("click",function(){
-          crystalTwo = Math.floor(Math.random()* 12) + 1;
-          console.log(crystalTwo);
-        });
+    
+   function reload(){
+        totalScore = 0; 
+        randomNumber = Math.floor(Math.random()* 120) + 19;
+        crystalValue =  Math.floor(Math.random()* 12) + 1;
+     gameStart();
+    };
+    function gameStart(){
+        $("#random-number").text(function(event){
+            randomNumber = Math.floor(Math.random()* 120) + 19;
+            $("#random-number").text("Random Number: " + randomNumber);
         
-        $("#crystal-three").on("click", function(){
-            crystalThree = Math.floor(Math.random()* 12) + 1;
-            console.log(crystalThree);
-        });
-        $("#crystal-four").on("click", function(){
-            crystalFour = Math.floor(Math.random()* 12) + 1;
-            console.log(crystalFour);
         })
+     $(".crystal-image").on("click", function(){
+            crystalValue = Math.floor(Math.random()* 12) + 1;
+            totalScore += crystalValue;
+             console.log(crystalValue);
+            $("#total-score").html("Total Score:" + totalScore);
         
-      crystalScore();
+           
+             
+       });
+      if( randomNumber === totalScore){
+         wins = 0;
+         wins++;
+         $("#wins").html("wins:" + wins);
+         reload();
+             
+        }else if( randomNumber < totalScore ){
+            losses = 0;
+            losses++;
+            $("#losses").html("losses:" + losses);
+            reload();
+                
+        }; 
 
+      
+       
+    
+      
 };
 gameStart();
-function crystalScore(gameStart){
-    crystalTotal = [crystalOne, crystalTwo, crystalThree, crystalFour];
-    for( var i = 0; i < getTotal.length; i++){
-            getTotal = parseInt(Math.floor(crystalTotal));
-            //$("#total-score").prepend("Total Score:" + getTotal);
-        }
 
-}
+
+//function crystalScore(gameStart){
+    
+    
+//};
+//crystalScore();
  
 
 //3. When they do click one, update the player's score counter.
