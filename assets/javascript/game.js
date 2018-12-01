@@ -18,10 +18,10 @@ totalScore += crystalValue;
     
     
    function reload(){
-        totalScore = 0; 
+        totalScore = 0;
         randomNumber = Math.floor(Math.random()* 120) + 19;
         crystalValue =  Math.floor(Math.random()* 12) + 1;
-     gameStart();
+       gameStart();
     };
     function gameStart(){
         $("#random-number").text(function(event){
@@ -33,25 +33,21 @@ totalScore += crystalValue;
             crystalValue = Math.floor(Math.random()* 12) + 1;
             totalScore += crystalValue;
              console.log(crystalValue);
-            $("#total-score").html("Total Score:" + totalScore);
+            $("#total-score").html("<h3>Total Score: " + totalScore + "</h3>");
         
-           
+            if( randomNumber === totalScore){
+                wins++;
+                $("#wins").html("wins:" + wins);
+                reload();
+                    
+               }else if( totalScore > randomNumber ){
+                   losses++;
+                   $("#losses").html("losses:" + losses);
+                   reload();
+                       
+               }; 
              
        });
-      if( randomNumber === totalScore){
-         wins = 0;
-         wins++;
-         $("#wins").html("wins:" + wins);
-         reload();
-             
-        }else if( randomNumber < totalScore ){
-            losses = 0;
-            losses++;
-            $("#losses").html("losses:" + losses);
-            reload();
-                
-        }; 
-
       
        
     

@@ -2,3 +2,7 @@ img{
     width: 200px;
     height: 200px;
 }
+#wrapper{
+    background-image: url("https://images.pexels.com/photos/953214/pexels-photo-953214.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    
+}
